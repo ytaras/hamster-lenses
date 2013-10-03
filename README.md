@@ -1,6 +1,10 @@
 # Hamster::Lenses
 
-TODO: Write a gem description
+This is a library which aims to add convenient ways of working with
+immutable collections provided by
+[Hamster](https://github.com/harukizaemon/hamster)
+
+Currently this is Proof of Concept.
 
 ## Installation
 
