@@ -3,19 +3,20 @@ require "hamster/hash"
 
 describe Hamster::Lenses::Composed do
   H = Hamster
-  L = Hamster::Lenses::Hash
+
+  subject { Hamster::Lenses }
 
   before do
     @hash1 = H.hash(key: H.hash(inner: :value))
     @hash2 =
       H.hash(key: H.hash(other_inner: H.hash(inner_inner: :value2)))
 
-    lense1 = L.lense(:key)
-    lense2 = L.lense(:inner)
-    lense2_2 = L.lense(:other_inner)
-    lense3 = L.lense(:inner_inner)
-    @composed_lense1 = Hamster::Lenses::Composed.lense(lense1, lense2)
-    @composed_lense2 = Hamster::Lenses::Composed.lense(lense1, lense2_2, lense3)
+    lense1 = subject.hashmap(:key)
+    lense2 = subject.hashmap(:inner)
+    lense2_2 = subject.hashmap(:other_inner)
+    lense3 = subject.hashmap(:inner_inner)
+    @composed_lense1 = lense1.and_then(lense2)
+    @composed_lense2 = lense1.and_then(lense2_2).and_then(lense3)
   end
 
   it 'should get 2 levels deep' do
@@ -55,7 +56,8 @@ describe Hamster::Lenses::Composed do
 
   it 'should define equal' do
     @composed_lense1.wont_equal @composed_lense2
-    @composed_lense1.must_equal L.lense(:key).and_then(L.lense :inner)
+    @composed_lense1.must_equal subject.hashmap(:key)
+      .and_then(subject.hashmap :inner)
   end
 
   it 'should raise exception on and_then nil' do

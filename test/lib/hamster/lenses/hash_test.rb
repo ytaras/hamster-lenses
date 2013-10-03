@@ -2,10 +2,11 @@ require_relative '../../../test_helper'
 require "hamster/hash"
 
 describe Hamster::Lenses::Hash do
-  L = Hamster::Lenses::Hash
+
+  subject { Hamster::Lenses }
   before do
     @hash = Hamster.hash(key: :value)
-    @lense = L.lense(:key)
+    @lense = subject.hashmap(:key)
   end
 
   it 'must get value' do
@@ -25,8 +26,8 @@ describe Hamster::Lenses::Hash do
   end
 
   it 'must define equals' do
-    @lense.must_equal L.lense(:key)
-    @lense.wont_equal L.lense(:key1)
+    @lense.must_equal subject.hashmap(:key)
+    @lense.wont_equal subject.hashmap(:key1)
   end
 
   it 'must raise exception on nil object' do

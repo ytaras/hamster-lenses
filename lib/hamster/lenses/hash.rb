@@ -6,10 +6,6 @@ module Hamster::Lenses
 
     attr_reader :key
 
-    def self.lense(key)
-      new(key)
-    end
-
     def initialize(key)
       @key = key
     end
