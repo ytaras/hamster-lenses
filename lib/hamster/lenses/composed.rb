@@ -18,9 +18,9 @@ module Hamster::Lenses
     end
 
     def put(object, value = Hamster::Undefined, &block)
-      inner = @lense1.get(object)
-      new_inner = @lense2.put(inner, value, &block)
-      @lense1.put(object, new_inner)
+      @lense1.put(object) do |inner|
+        @lense2.put(inner, value, &block)
+      end
     end
   end
 end
