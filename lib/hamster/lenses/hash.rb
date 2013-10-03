@@ -1,5 +1,7 @@
 module Hamster::Lenses
   class Hash
+    include Hamster::Lenses::Lense
+
     def self.lense(key)
       new(key)
     end

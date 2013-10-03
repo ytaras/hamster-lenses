@@ -2,28 +2,25 @@ require 'hamster/list'
 
 module Hamster::Lenses
   class Composed
+    include Lense
+
     def self.lense(*lenses)
-      new(*lenses)
+      lenses.reduce(&:and_then)
     end
 
-    def initialize(*lenses)
-      @lenses = Hamster.list(*lenses)
+    def initialize(lense1, lense2)
+      @lense1 = lense1
+      @lense2 = lense2
     end
 
     def get(object)
-      @lenses.reduce(object) { |current, lense| lense.get(current) }
+      @lense2.get(@lense1.get(object))
     end
 
     def put(object, value)
-      # Recursive function magic goes here - maybe something more
-      # explicit needed?
-      start = ->(x) { value }
-      lense_executor = @lenses.reverse.reduce(start) { |f, lense|
-        ->(x) {
-          lense.put(x, &f)
-        }
-      }
-      lense_executor.call(object)
+      inner = @lense1.get(object)
+      new_inner = @lense2.put(inner, value)
+      @lense1.put(object, new_inner)
     end
   end
 end
