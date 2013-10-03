@@ -3,16 +3,17 @@ require "hamster/hash"
 
 describe Hamster::Lenses::Composed do
   H = Hamster
+  L = Hamster::Lenses::Hash
 
   before do
     @hash1 = H.hash(key: H.hash(inner: :value))
     @hash2 =
       H.hash(key: H.hash(other_inner: H.hash(inner_inner: :value2)))
 
-    lense1 = Hamster::Lenses::Hash.lense(:key)
-    lense2 = Hamster::Lenses::Hash.lense(:inner)
-    lense2_2 = Hamster::Lenses::Hash.lense(:other_inner)
-    lense3 = Hamster::Lenses::Hash.lense(:inner_inner)
+    lense1 = L.lense(:key)
+    lense2 = L.lense(:inner)
+    lense2_2 = L.lense(:other_inner)
+    lense3 = L.lense(:inner_inner)
     @composed_lense1 = Hamster::Lenses::Composed.lense(lense1, lense2)
     @composed_lense2 = Hamster::Lenses::Composed.lense(lense1, lense2_2, lense3)
   end
@@ -45,6 +46,16 @@ describe Hamster::Lenses::Composed do
     @composed_lense2.put(@hash2, &:to_s)
       .must_equal H.hash(key: H.hash(other_inner:
                                      H.hash(inner_inner: 'value2')))
+  end
+
+  it 'should render itself' do
+    @composed_lense1.to_s.must_equal '[:key] / [:inner]'
+    @composed_lense2.to_s.must_equal '[:key] / [:other_inner] / [:inner_inner]'
+  end
+
+  it 'should define equal' do
+    @composed_lense1.wont_equal @composed_lense2
+    @composed_lense1.must_equal L.lense(:key).and_then(L.lense :inner)
   end
 
 end

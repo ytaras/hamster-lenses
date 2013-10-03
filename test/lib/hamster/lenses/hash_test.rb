@@ -2,9 +2,10 @@ require_relative '../../../test_helper'
 require "hamster/hash"
 
 describe Hamster::Lenses::Hash do
+  L = Hamster::Lenses::Hash
   before do
     @hash = Hamster.hash(key: :value)
-    @lense = Hamster::Lenses::Hash.lense(:key)
+    @lense = L.lense(:key)
   end
 
   it 'must get value' do
@@ -17,6 +18,15 @@ describe Hamster::Lenses::Hash do
 
   it 'must put value via block' do
     @lense.put(@hash) { |old| old.to_s }.must_equal Hamster.hash(key: 'value')
+  end
+
+  it 'must have render well' do
+    @lense.to_s.must_equal '[:key]'
+  end
+
+  it 'must define equals' do
+    @lense.must_equal L.lense(:key)
+    @lense.wont_equal L.lense(:key1)
   end
 
 end
