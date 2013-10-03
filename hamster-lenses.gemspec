@@ -24,7 +24,7 @@ by Haskell and Scala libraries}
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "pry-byebug"
+  # spec.add_development_dependency "pry-byebug" # TODO - set this for devs only
   spec.add_development_dependency 'simplecov'
 
 end
