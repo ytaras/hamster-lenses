@@ -8,9 +8,10 @@ Gem::Specification.new do |spec|
   spec.version       = Hamster::Lenses::VERSION
   spec.authors       = ["Yura Taras"]
   spec.email         = ["yura.taras@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Lenses library for immutable collections inspired
+by Haskell and Scala libraries}
+  spec.summary       = spec.description
+  spec.homepage      = "https://github.com/ytaras/hamster-lenses"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +21,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+
 end
