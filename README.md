@@ -1,6 +1,7 @@
 # Hamster::Lenses
 
 [![Build Status](https://travis-ci.org/ytaras/hamster-lenses.png?branch=master)](https://travis-ci.org/ytaras/hamster-lenses)
+[![Code Climate](https://codeclimate.com/github/ytaras/hamster-lenses.png)](https://codeclimate.com/github/ytaras/hamster-lenses)
 
 This is a library which aims to add convenient ways of working with
 immutable collections provided by
