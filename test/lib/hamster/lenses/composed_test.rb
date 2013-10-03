@@ -35,4 +35,16 @@ describe Hamster::Lenses::Composed do
       must_equal H.hash(key:
                         H.hash(other_inner: H.hash(inner_inner: :new_value)))
   end
+
+  it 'should put block 2 levels deep' do
+    @composed_lense1.put(@hash1, &:to_s)
+      .must_equal H.hash(key: H.hash(inner: 'value'))
+  end
+
+  it 'should put block 3 levels deep' do
+    @composed_lense2.put(@hash2, &:to_s)
+      .must_equal H.hash(key: H.hash(other_inner:
+                                     H.hash(inner_inner: 'value2')))
+  end
+
 end
