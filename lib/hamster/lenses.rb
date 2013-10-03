@@ -1,4 +1,5 @@
 require "hamster/lenses/version"
+require "hamster/lenses/hash"
 
 module Hamster
   module Lenses
