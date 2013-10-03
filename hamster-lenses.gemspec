@@ -20,8 +20,10 @@ by Haskell and Scala libraries}
   spec.require_paths = ["lib"]
 
   spec.add_dependency "hamster"
+  spec.add_dependency "preconditions"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "pry-byebug"
 
 end

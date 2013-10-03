@@ -29,4 +29,9 @@ describe Hamster::Lenses::Hash do
     @lense.wont_equal L.lense(:key1)
   end
 
+  it 'must raise exception on nil object' do
+    assert_raises(ArgumentError) { @lense.put(nil, :value) }
+    assert_raises(ArgumentError) { @lense.get(nil, :value) }
+  end
+
 end

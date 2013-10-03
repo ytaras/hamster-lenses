@@ -58,4 +58,14 @@ describe Hamster::Lenses::Composed do
     @composed_lense1.must_equal L.lense(:key).and_then(L.lense :inner)
   end
 
+  it 'should raise exception on and_then nil' do
+    assert_raises(ArgumentError) { @composed_lense1.and_then nil }
+  end
+
+  it 'should raise exception on put or get nil' do
+    assert_raises(ArgumentError) { @composed_lense1.put nil }
+    assert_raises(ArgumentError) { @composed_lense1.get nil }
+  end
+
+
 end

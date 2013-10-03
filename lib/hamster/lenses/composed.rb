@@ -1,4 +1,4 @@
-require 'hamster/list'
+require "preconditions"
 
 module Hamster::Lenses
   class Composed
@@ -10,6 +10,8 @@ module Hamster::Lenses
     end
 
     def initialize(lense1, lense2)
+      check_not_nil(lense1)
+      check_not_nil(lense2)
       @lense1 = lense1
       @lense2 = lense2
     end
