@@ -5,9 +5,6 @@ module Hamster::Lenses
     include Lense
 
     attr_reader :lense1, :lense2
-    def self.lense(*lenses)
-      lenses.reduce(&:and_then)
-    end
 
     def initialize(lense1, lense2)
       check_not_nil(lense1)
