@@ -1,7 +1,7 @@
 require_relative '../../../test_helper'
 require "hamster/hash"
 
-describe Hamster::Lenses::Hash do
+describe Hamster::Lenses::Hashmap do
 
   subject { Hamster::Lenses }
   before do

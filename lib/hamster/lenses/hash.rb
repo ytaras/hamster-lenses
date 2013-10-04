@@ -1,7 +1,7 @@
 require "preconditions"
 
 module Hamster::Lenses
-  class Hash
+  class Hashmap
     include Hamster::Lenses::Lense
 
     attr_reader :key

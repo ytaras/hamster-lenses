@@ -5,7 +5,7 @@ require "hamster/lenses/composed"
 
 module Hamster::Lenses
   def self.hashmap(key)
-    self::Hash.new(key)
+    self::Hashmap.new(key)
   end
 end
 
