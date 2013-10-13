@@ -1,4 +1,4 @@
-require "preconditions"
+require "hamster/lenses/lense"
 
 module Hamster::Lenses
   class Hashmap
