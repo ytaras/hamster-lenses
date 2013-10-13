@@ -6,8 +6,13 @@ describe Hamster::Lenses::DSL do
     @lense = subject.hashmap(:key)
   end
 
-  it 'must define []' do
+  it 'must define [] as hash' do
     @lense[:second].must_equal subject.
       hashmap(:key).and_then subject.hashmap(:second)
+  end
+
+  it 'must define [] as list' do
+    @lense[1].must_equal subject.
+      hashmap(:key).and_then subject.list(1)
   end
 end

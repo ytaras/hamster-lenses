@@ -57,4 +57,13 @@ describe Hamster::Lenses::List do
       .hash(key: Hamster.list(:one, 'two', :three))
   end
 
+  it 'must define equals' do
+    @lenses[0].must_equal subject.list(0)
+    @lenses[0].wont_equal @lenses[1]
+  end
+
+  it 'must render' do
+    @lenses[0].to_s.must_equal '[0]'
+  end
+
 end

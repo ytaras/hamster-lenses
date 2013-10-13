@@ -22,4 +22,12 @@ class Hamster::Lenses::List
     list.take(index) + tail
   end
 
+  def to_s
+    "[#{index}]"
+  end
+
+  def ==(other)
+    index == other.index
+  end
+
 end
