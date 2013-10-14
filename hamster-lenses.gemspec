@@ -26,5 +26,6 @@ by Haskell and Scala libraries}
   spec.add_development_dependency "rake"
   # spec.add_development_dependency "pry-byebug" # TODO - set this for devs only
   spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'guard-minitest'
 
 end
