@@ -4,7 +4,7 @@ require "hamster/list"
 describe Hamster::Lenses::List do
   subject { Hamster::Lenses.all_list }
   before do
-    @list = Hamster.list(*%i(one two three))
+    @list = Hamster.list(:one, :two, :three)
   end
 
   it 'must get all values' do
